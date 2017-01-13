@@ -12,7 +12,8 @@ function azera_shop_companion_customize_register( $wp_customize ) {
 		$wp_customize->add_section( 'azera_shop_services_section' , array(
 			'title'       => esc_html__( 'Services section', 'azera-shop-companion' ),
 			'priority'    => 4,
-			'panel'       => 'azera_shop_front_page_sections'
+			'panel'       => 'azera_shop_front_page_sections',
+			'active_callback' => 'azera_shop_show_on_front',
 		));
 		
 		/* Services show/hide */
@@ -82,7 +83,8 @@ function azera_shop_companion_customize_register( $wp_customize ) {
 		$wp_customize->add_section( 'azera_shop_team_section' , array(
 			'title'       => esc_html__( 'Team section', 'azera-shop-companion' ),
 			'priority'    => 6,
-			'panel'       => 'azera_shop_front_page_sections'
+			'panel'       => 'azera_shop_front_page_sections',
+			'active_callback' => 'azera_shop_show_on_front',
 		));
 		
 		/* Team show/hide */
@@ -160,7 +162,8 @@ function azera_shop_companion_customize_register( $wp_customize ) {
 		$wp_customize->add_section( 'azera_shop_testimonials_section' , array(
 			'title'       => esc_html__( 'Testimonials section', 'azera-shop-companion' ),
 			'priority'    => 7,
-			'panel'       => 'azera_shop_front_page_sections'
+			'panel'       => 'azera_shop_front_page_sections',
+			'active_callback' => 'azera_shop_show_on_front',
 		));
 		
 		/* Testimonials show/hide */
