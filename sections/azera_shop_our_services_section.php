@@ -21,7 +21,7 @@
 	/* If section is not disabled */
 	if( isset($azera_shop_our_services_show) && $azera_shop_our_services_show != 1 ) {
 
-		if(!empty($azera_shop_our_services_title) || !empty($azera_shop_our_services_subtitle) || !azera_shop_general_repeater_is_empty($azera_shop_services)){
+		if(!empty($azera_shop_our_services_title) || !empty($azera_shop_our_services_subtitle) || !empty($azera_shop_services)){
 	?>
 			<section class="services" id="services" role="region" aria-label="<?php esc_html_e('Services','azera-shop-companion') ?>">
 				<div class="section-overlay-layer">
