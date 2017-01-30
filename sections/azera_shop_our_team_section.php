@@ -25,7 +25,7 @@
 		if( !empty($azera_shop_our_team_title) || !empty($azera_shop_our_team_subtitle) || !azera_shop_general_repeater_is_empty($azera_shop_team_content) ){
 			
 			if( !empty($azera_shop_our_team_background) ) {
-				echo '<section class="team" id="team" role="region" aria-label="'.esc_html__('Team','azera-shop-companion').'" style="background:url('.$azera_shop_our_team_background.');">';
+				echo '<section class="team" id="team" role="region" aria-label="'.esc_html__('Team','azera-shop-companion').'" style="background-image:url('.$azera_shop_our_team_background.');">';
 			}
 			else {
 				echo '<section class="team" id="team" role="region" aria-label="'.esc_html__('Team','azera-shop-companion').'">';

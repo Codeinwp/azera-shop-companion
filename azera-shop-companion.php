@@ -3,7 +3,7 @@
 Plugin Name: Azera Shop Companion
 Plugin URI: https://github.com/Codeinwp/azera-shop-companion
 Description: Add Our team, Our Services and Testimonials sections to Azera Shop theme.
-Version: 1.0.2
+Version: 1.0.3
 Author: Themeisle
 Author URI: http://themeisle.com
 Text Domain: azera-shop-companion
@@ -17,7 +17,7 @@ if ( ! function_exists( 'add_action' ) ) {
 }
 
 /* Important constants */
-define( 'AZERA_SHOP_COMPANION_VERSION', '1.0.2' );
+define( 'AZERA_SHOP_COMPANION_VERSION', '1.0.3' );
 define( 'AZERA_SHOP_COMPANION_URL', plugin_dir_url( __FILE__ ) );
 define( 'AZERA_SHOP_COMPANION_PATH', plugin_dir_path( __FILE__ ) );
 
