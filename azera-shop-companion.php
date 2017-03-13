@@ -103,6 +103,6 @@ add_action( 'wp_enqueue_scripts', 'azera_shop_companion_register_plugin_styles' 
 
 function azera_shop_companion_register_plugin_styles() {
 	
-	wp_enqueue_style( 'azera-shop-companion-style', AZERA_SHOP_COMPANION_URL.'/css/style.css' );
+	wp_enqueue_style( 'azera-shop-companion-style', trailingslashit( AZERA_SHOP_COMPANION_URL ) . 'css/style.css' );
 	
 }
