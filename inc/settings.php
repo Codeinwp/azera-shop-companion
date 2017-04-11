@@ -55,16 +55,11 @@ function azera_shop_companion_customize_register( $wp_customize ) {
 		
 		
 		/* Services content */
+		$default = azera_shop_companion_sevices_get_default_content();
 		$wp_customize->add_setting( 'azera_shop_services_content', array(
 			'sanitize_callback' => 'azera_shop_sanitize_repeater',
-			'default' => json_encode(
-								array(
-									array('choice'=>'azera_shop_icon','icon_value' => 'fa-cogs','title' => esc_html__('Lorem Ipsum','azera-shop-companion'),'text' => esc_html__('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nec purus feugiat, molestie ipsum et, consequat nibh. Etiam non elit dui. Nullam vel eros sit amet arcu vestibulum accumsan in in leo.','azera-shop-companion')),
-									array('choice'=>'azera_shop_icon','icon_value' => 'fa-bar-chart-o','title' => esc_html__('Lorem Ipsum','azera-shop-companion'),'text' => esc_html__('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nec purus feugiat, molestie ipsum et, consequat nibh. Etiam non elit dui. Nullam vel eros sit amet arcu vestibulum accumsan in in leo.','azera-shop-companion')),
-									array('choice'=>'azera_shop_icon','icon_value' => 'fa-globe','title' => esc_html__('Lorem Ipsum','azera-shop-companion'),'text' => esc_html__('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nec purus feugiat, molestie ipsum et, consequat nibh. Etiam non elit dui. Nullam vel eros sit amet arcu vestibulum accumsan in in leo.','azera-shop-companion'))
-								)
-							)
-		));
+			'default' => $default,
+		) );
 		$wp_customize->add_control( new Azera_Shop_General_Repeater( $wp_customize, 'azera_shop_services_content', array(
 			'label'   => esc_html__('Add new service box','azera-shop-companion'),
 			'section' => 'azera_shop_services_section',
@@ -136,16 +131,11 @@ function azera_shop_companion_customize_register( $wp_customize ) {
 		)));
 		
 		/* Team content */
+		$default = azera_shop_companion_team_get_default_content();
 		$wp_customize->add_setting( 'azera_shop_team_content', array(
 			'sanitize_callback' => 'azera_shop_sanitize_repeater',
-			'default' => json_encode(
-								array(
-									array('image_url' => azera_shop_get_file('/images/team/1.jpg'),'title' => esc_html__('Albert Jacobs','azera-shop-companion'),'subtitle' => esc_html__('Founder & CEO','azera-shop-companion')),
-									array('image_url' => azera_shop_get_file('/images/team/2.jpg'),'title' => esc_html__('Tonya Garcia','azera-shop-companion'),'subtitle' => esc_html__('Account Manager','azera-shop-companion')),
-									array('image_url' => azera_shop_get_file('/images/team/3.jpg'),'title' => esc_html__('Linda Guthrie','azera-shop-companion'),'subtitle' => esc_html__('Business Development','azera-shop-companion'))
-								)
-							)
-		));
+			'default' => $default,
+		) );
 		$wp_customize->add_control( new Azera_Shop_General_Repeater( $wp_customize, 'azera_shop_team_content', array(
 			'label'   => esc_html__('Add new team member','azera-shop-companion'),
 			'section' => 'azera_shop_team_section',
@@ -205,15 +195,10 @@ function azera_shop_companion_customize_register( $wp_customize ) {
 		
 		
 		/* Testimonials content */
+		$default = azera_shop_companion_testimonials_get_default_content();
 		$wp_customize->add_setting( 'azera_shop_testimonials_content', array(
 			'sanitize_callback' => 'azera_shop_sanitize_repeater',
-			'default' => json_encode(
-								array(
-										array('image_url' => azera_shop_get_file('/images/clients/1.jpg'),'title' => esc_html__('Happy Customer','azera-shop-companion'),'subtitle' => esc_html__('Lorem ipsum','azera-shop-companion'),'text' => esc_html__('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nec purus feugiat, molestie ipsum et, consequat nibh. Etiam non elit dui. Nullam vel eros sit amet arcu vestibulum accumsan in in leo. Fusce malesuada vulputate faucibus. Integer in hendrerit nisi. Praesent a hendrerit urna. In non imperdiet elit, sed molestie odio. Fusce ac metus non purus sollicitudin laoreet.','azera-shop-companion')),
-										array('image_url' => azera_shop_get_file('/images/clients/2.jpg'),'title' => esc_html__('Happy Customer','azera-shop-companion'),'subtitle' => esc_html__('Lorem ipsum','azera-shop-companion'),'text' => esc_html__('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nec purus feugiat, molestie ipsum et, consequat nibh. Etiam non elit dui. Nullam vel eros sit amet arcu vestibulum accumsan in in leo. Fusce malesuada vulputate faucibus. Integer in hendrerit nisi. Praesent a hendrerit urna. In non imperdiet elit, sed molestie odio. Fusce ac metus non purus sollicitudin laoreet.','azera-shop-companion')),
-										array('image_url' => azera_shop_get_file('/images/clients/3.jpg'),'title' => esc_html__('Happy Customer','azera-shop-companion'),'subtitle' => esc_html__('Lorem ipsum','azera-shop-companion'),'text' => esc_html__('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nec purus feugiat, molestie ipsum et, consequat nibh. Etiam non elit dui. Nullam vel eros sit amet arcu vestibulum accumsan in in leo. Fusce malesuada vulputate faucibus. Integer in hendrerit nisi. Praesent a hendrerit urna. In non imperdiet elit, sed molestie odio. Fusce ac metus non purus sollicitudin laoreet.','azera-shop-companion'))
-								)
-							)
+			'default' => $default,
 		));
 		$wp_customize->add_control( new Azera_Shop_General_Repeater( $wp_customize, 'azera_shop_testimonials_content', array(
 			'label'   => esc_html__('Add new testimonial','azera-shop-companion'),
