@@ -2,7 +2,7 @@
 /**
  * General functions for translation.
  *
- * @package azera-shop
+ * @package azera-shop-companion
  */
 
 /**
