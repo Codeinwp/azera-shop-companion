@@ -21,7 +21,7 @@
 	/* If section is not disabled */
 	if( isset($azera_shop_happy_customers_show) && $azera_shop_happy_customers_show != 1 ) {
 
-		if( !empty($azera_shop_happy_customers_title) || !empty($azera_shop_happy_customers_subtitle) || !azera_shop_general_repeater_is_empty($azera_shop_testimonials_content) ){
+		if( !empty($azera_shop_happy_customers_title) || !empty($azera_shop_happy_customers_subtitle) ) {
 	?>
 		<section class="testimonials" id="customers" role="region" aria-label="<?php esc_html_e('Testimonials','azera-shop-companion') ?>">
 			<div class="section-overlay-layer">
