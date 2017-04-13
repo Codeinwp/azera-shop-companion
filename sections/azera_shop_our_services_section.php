@@ -1,282 +1,114 @@
-<!-- =========================
- SECTION: SERVICES
-============================== -->
 <?php
-	global $wp_customize;
-	
-	$azera_shop_our_services_show = get_theme_mod('azera_shop_our_services_show');
-	
-	$azera_shop_our_services_title = get_theme_mod('azera_shop_our_services_title',esc_html__('Our Services','azera-shop-companion'));
-	$azera_shop_our_services_subtitle = get_theme_mod('azera_shop_our_services_subtitle',esc_html__('Lorem ipsum dolor sit amet, consectetur adipiscing elit.','azera-shop-companion'));
-	$azera_shop_services = get_theme_mod('azera_shop_services_content',
-		json_encode(
-			array(
-					array('choice'=>'azera_shop_icon','icon_value' => 'fa-cogs','title' => esc_html__('Lorem Ipsum','azera-shop-companion'),'text' => esc_html__('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nec purus feugiat, molestie ipsum et, consequat nibh. Etiam non elit dui. Nullam vel eros sit amet arcu vestibulum accumsan in in leo.','azera-shop-companion')),
-					array('choice'=>'azera_shop_icon','icon_value' => 'fa-bar-chart-o','title' => esc_html__('Lorem Ipsum','azera-shop-companion'),'text' => esc_html__('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nec purus feugiat, molestie ipsum et, consequat nibh. Etiam non elit dui. Nullam vel eros sit amet arcu vestibulum accumsan in in leo.','azera-shop-companion')),
-					array('choice'=>'azera_shop_icon','icon_value' => 'fa-globe','title' => esc_html__('Lorem Ipsum','azera-shop-companion'),'text' => esc_html__('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nec purus feugiat, molestie ipsum et, consequat nibh. Etiam non elit dui. Nullam vel eros sit amet arcu vestibulum accumsan in in leo.','azera-shop-companion'))
-			)
-		)
-	);
-	
-	/* If section is not disabled */
-	if( isset($azera_shop_our_services_show) && $azera_shop_our_services_show != 1 ) {
+$azera_shop_our_services_show = get_theme_mod( 'azera_shop_our_services_show' );
+$azera_shop_our_services_title    = get_theme_mod( 'azera_shop_our_services_title', esc_html__( 'Our Services', 'azera-shop-companion' ) );
+$azera_shop_our_services_subtitle = get_theme_mod( 'azera_shop_our_services_subtitle', esc_html__( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', 'azera-shop-companion' ) );
+$default = azera_shop_companion_sevices_get_default_content();
+$azera_shop_services              = get_theme_mod( 'azera_shop_services_content', $default);
+$section_is_empty                      = ! isset( $azera_shop_our_services_show ) || $azera_shop_our_services_show == 1 || ( empty( $azera_shop_our_services_title ) && empty( $azera_shop_our_services_subtitle ) && empty( $azera_shop_services ) ); ?>
 
-		if(!empty($azera_shop_our_services_title) || !empty($azera_shop_our_services_subtitle) || !empty($azera_shop_services)){
-	?>
-			<section class="services" id="services" role="region" aria-label="<?php esc_html_e('Services','azera-shop-companion') ?>">
-				<div class="section-overlay-layer">
-					<div class="container">
+<section class="services <?php if ( $section_is_empty ) {
+	echo 'llorix_one_lite_only_customizer';
+} ?>" id="services" role="region" aria-label="<?php esc_attr_e( 'Services', 'azera-shop-companion' ) ?>">
+    <div class="section-overlay-layer">
+        <div class="container">
+            <div class="section-header">
+                <?php
+                if ( ! empty( $azera_shop_our_services_title ) ) { ?>
+                    <h2 class="dark-text"><?php echo wp_kses_post( $azera_shop_our_services_title ); ?></h2>
+                    <div class="colored-line"></div>
+                    <?php
+                } elseif ( is_customize_preview() ) { ?>
+                    <h2 class="dark-text azera_shop_only_customizer"></h2>
+                    <div class="colored-line azera_shop_only_customizer"></div>
+                    <?php
+                }
 
-						<!-- SECTION HEADER -->
-						<div class="section-header">
-							<?php
-								if( !empty($azera_shop_our_services_title) ){
-									echo '<h2 class="dark-text">'.esc_attr($azera_shop_our_services_title).'</h2><div class="colored-line"></div>';
-								} elseif ( isset( $wp_customize ) ) {
-									echo '<h2 class="dark-text azera_shop_only_customizer"></h2><div class="colored-line azera_shop_only_customizer"></div>';
-								}
-							?>
+                if ( ! empty( $azera_shop_our_services_subtitle ) ) { ?>
+                    <div class="sub-heading"><?php echo wp_kses_post( $azera_shop_our_services_subtitle ); ?></div>
+                    <?php
+                } elseif ( is_customize_preview() ) { ?>
+                    <div class="sub-heading azera_shop_only_customizer"></div>
+                    <?php
+                } ?>
+            </div>
 
-							<?php
-								if( !empty($azera_shop_our_services_subtitle) ){
-									echo '<div class="sub-heading">'.esc_attr($azera_shop_our_services_subtitle).'</div>';
-								} elseif ( isset( $wp_customize ) ) {
-									echo '<div class="sub-heading azera_shop_only_customizer"></div>';
-								}
-							?>
-						</div>
+            <?php
+            if ( ! empty( $azera_shop_services ) ) {
+                $azera_shop_services_decoded = json_decode( $azera_shop_services ); ?>
+                <div id="our_services_wrap" class="services-wrap">
+                    <?php
+                    foreach ( $azera_shop_services_decoded as $azera_shop_service_box ) {
+                        $choice           = ! empty( $azera_shop_service_box->choice ) ? $azera_shop_service_box->choice : '';
+                        $icon             = ! empty( $azera_shop_service_box->icon_value ) ? apply_filters( 'azera_shop_translate_single_string', $azera_shop_service_box->icon_value, 'Services section' ) : '';
+                        $image            = ! empty( $azera_shop_service_box->image_url ) ? apply_filters( 'azera_shop_translate_single_string', $azera_shop_service_box->image_url, 'Services section' ) : '';
+                        $title            = ! empty( $azera_shop_service_box->title ) ? apply_filters( 'azera_shop_translate_single_string', $azera_shop_service_box->title, 'Services section' ) : '';
+                        $text             = ! empty( $azera_shop_service_box->text ) ? apply_filters( 'azera_shop_translate_single_string', $azera_shop_service_box->text, 'Services section' ) : '';
+                        $link             = ! empty( $azera_shop_service_box->link ) ? apply_filters( 'azera_shop_translate_single_string', $azera_shop_service_box->link, 'Services section' ) : '';
+                        $section_is_empty = ( empty( $icon ) || $icon === 'No Icon' && $choice === 'azera_shop_icon' ) && ( empty( $image ) && $choice === 'azera_shop_image' ) && empty( $title ) && empty( $text );
 
+                        if ( ! $section_is_empty ) { ?>
+                            <div class="service-box">
+                                <div class="single-service border-bottom-hover">
+                                    <?php
+                                    if ( ! empty( $choice ) && $choice !== 'azera_shop_none' ) {
 
-						<?php
-							if( !empty($azera_shop_services) ){
-								$azera_shop_services_decoded = json_decode($azera_shop_services);
-								echo '<div id="our_services_wrap" class="services-wrap">';
-									foreach($azera_shop_services_decoded as $azera_shop_service_box){
-										if( (!empty($azera_shop_service_box->icon_value) && $azera_shop_service_box->icon_value!='No Icon' && $azera_shop_service_box->choice == 'azera_shop_icon')  || (!empty($azera_shop_service_box->image_url)  && $azera_shop_service_box->choice == 'azera_shop_image') || !empty($azera_shop_service_box->title) || !empty($azera_shop_service_box->text) ){
-											echo '<div class="service-box"><div class="single-service border-bottom-hover">';
-												if( !empty($azera_shop_service_box->choice) && $azera_shop_service_box->choice !== 'azera_shop_none'  ){
-													if ( $azera_shop_service_box->choice == 'azera_shop_icon' ){
-														if( !empty($azera_shop_service_box->icon_value) ) {
-															if( !empty($azera_shop_service_box->link) ){
-																if (function_exists ( 'icl_t' ) && !empty($azera_shop_service_box->id)){
-																	
-																	$azera_shop_link_services = icl_t('Featured Area',$azera_shop_service_box->id.'_services_link',$azera_shop_service_box->link);
-																	
-																	echo '<div class="service-icon colored-text"><a href="'.esc_url($azera_shop_link_services).'"><i class="fa '.esc_attr($azera_shop_service_box->icon_value).'"></i></a></div>';
-																} else {
-																
-																	echo '<div class="service-icon colored-text"><a href="'.esc_url($azera_shop_service_box->link).'"><i class="fa '.esc_attr($azera_shop_service_box->icon_value).'"></i></a></div>';
-																}
-															} else {
-																echo '<div class="service-icon colored-text"><i class="fa '.esc_attr($azera_shop_service_box->icon_value).'"></i></div>';
-															}
-														}
-													}
-													if( $azera_shop_service_box->choice == 'azera_shop_image' ){
-														if( !empty($azera_shop_service_box->image_url)){
-															if( !empty($azera_shop_service_box->link) ){
-																if(!empty($azera_shop_service_box->title)){
-																	
-																	if (function_exists ( 'icl_t' ) && !empty($azera_shop_service_box->id)){
-																	
-																		$azera_shop_title_services = icl_t('Featured Area',$azera_shop_service_box->id.'_services_title',$azera_shop_service_box->title);
-																		$azera_shop_link_services = icl_t('Featured Area',$azera_shop_service_box->id.'_services_link',$azera_shop_service_box->link);
-															
-																		echo '<a href="'.esc_url($azera_shop_link_services).'"><img src="'.esc_url($azera_shop_service_box->image_url).'" alt="'.$azera_shop_title_services.'"/></a>';
-																		
-																	} else {
-																		
-																		echo '<a href="'.esc_url($azera_shop_service_box->link).'"><img src="'.esc_url($azera_shop_service_box->image_url).'" alt="'.$azera_shop_service_box->title.'"/></a>';
-																	}	
-																	
-																} else {
-																	
-																	if (function_exists ( 'icl_t' ) && !empty($azera_shop_service_box->id)){
-																		
-																		$azera_shop_link_services = icl_t('Featured Area',$azera_shop_service_box->id.'_services_link',$azera_shop_service_box->link);
-																		
-																		echo '<a href="'.esc_url($azera_shop_link_services).'"><img src="'.esc_url($azera_shop_service_box->image_url).'" alt="'.esc_html__('Featured Image','azera-shop-companion').'"/></a>';
-																		
-																	} else {
-																		
-																		echo '<a href="'.esc_url($azera_shop_service_box->link).'"><img src="'.esc_url($azera_shop_service_box->image_url).'" alt="'.esc_html__('Featured Image','azera-shop-companion').'"/></a>';
-																	}	
-																	
-																}
-															} else {
-																if(!empty($azera_shop_service_box->title)){
-																	echo '<img src="'.esc_url($azera_shop_service_box->image_url).'" alt="'.$azera_shop_service_box->title.'"/>';
-																} else {
-																	echo '<img src="'.esc_url($azera_shop_service_box->image_url).'" alt="'.esc_html__('Featured Image','azera-shop-companion').'"/>';
-																}
-															}
-														}
-													}
-												}
-												if(!empty($azera_shop_service_box->title)){
-													if( !empty($azera_shop_service_box->link) ){
-														if (function_exists ( 'icl_t' ) && !empty($azera_shop_service_box->id)){
-															$azera_shop_title_services = icl_t('Featured Area',$azera_shop_service_box->id.'_services_title',$azera_shop_service_box->title);
-															$azera_shop_link_services = icl_t('Featured Area',$azera_shop_service_box->id.'_services_link',$azera_shop_service_box->link);
-															echo '<h3 class="colored-text"><a href="'.esc_url($azera_shop_link_services).'">'.esc_attr($azera_shop_title_services).'</a></h3>';
-														} else {
-															echo '<h3 class="colored-text"><a href="'.esc_url($azera_shop_service_box->link).'">'.esc_attr($azera_shop_service_box->title).'</a></h3>';
-														}
-													} else {
-														if (function_exists ( 'icl_t' ) && !empty($azera_shop_service_box->id)){
-															$azera_shop_title_services = icl_t('Featured Area',$azera_shop_service_box->id.'_services_title',$azera_shop_service_box->title);
-															echo '<h3 class="colored-text">'.esc_attr($azera_shop_title_services).'</h3>';
-														} else {
-															echo '<h3 class="colored-text">'.esc_attr($azera_shop_service_box->title).'</h3>';
-														}
-													}
-												}
-												if(!empty($azera_shop_service_box->text)){
-													if (function_exists ( 'icl_t' ) && !empty($azera_shop_service_box->id)){
-														echo '<p>'.icl_t('Featured Area',$azera_shop_service_box->id.'_services_text',html_entity_decode($azera_shop_service_box->text)).'</p>';
-													} else {
-														echo '<p>'.html_entity_decode($azera_shop_service_box->text).'</p>';
-													}
-												}
-											echo '</div></div>';
-										}
-									}
-								echo '</div>';
-							}
-						?>
-					</div>	
-				</div>
-			</section>
-	<?php
-		}
-		
-	/* If section is disabled, but we are in Customize, display section with class azera_shop_only_customizer */	
-	} elseif( isset( $wp_customize ) ) {
-		?>
-		<section class="services azera_shop_only_customizer" id="services" role="region" aria-label="<?php esc_html_e('Services','azera-shop-companion') ?>">
-			<div class="section-overlay-layer">
-				<div class="container">
+                                        if ( $choice === 'azera_shop_icon' ) {
+                                            if ( ! empty( $icon ) ) {
+                                                if ( ! empty( $link ) ) { ?>
+                                                    <div class="service-icon colored-text">
+                                                        <a href="<?php echo esc_url( $link ); ?>">
+                                                            <i class="fa <?php echo esc_attr( $icon ); ?>"></i>
+                                                        </a>
+                                                    </div>
+                                                    <?php
+                                                } else { ?>
+                                                    <div class="service-icon colored-text">
+                                                        <i class="fa <?php echo esc_attr( $icon ); ?>"></i>
+                                                    </div>
+                                                    <?php
+                                                }
+                                            }
+                                        }
 
-					<!-- SECTION HEADER -->
-					<div class="section-header">
-						<?php
-							if( !empty($azera_shop_our_services_title) ){
-								echo '<h2 class="dark-text">'.esc_attr($azera_shop_our_services_title).'</h2><div class="colored-line"></div>';
-							} elseif ( isset( $wp_customize ) ) {
-								echo '<h2 class="dark-text azera_shop_only_customizer"></h2><div class="colored-line azera_shop_only_customizer"></div>';
-							}
-						?>
+                                        if ( $choice === 'azera_shop_image' ) {
+                                            if ( ! empty( $image ) ) {
+                                                if ( ! empty( $link ) ) { ?>
+                                                    <a href="<?php echo esc_url( $link ); ?>">
+                                                        <img src="<?php echo esc_url( $image ); ?>" <?php echo( ! empty( $title ) ? 'alt="' . esc_attr( $title ) . '"' : '' ); ?> />
+                                                    </a>
+                                                    <?php
+                                                } else { ?>
+                                                    <img src="<?php echo esc_url( $image ); ?>" <?php echo( ! empty( $title ) ? 'alt="' . esc_attr( $title ) . '"' : '' ); ?> />
+                                                    <?php
+                                                }
+                                            }
+                                        }
+                                    }
 
-						<?php
-							if( !empty($azera_shop_our_services_subtitle) ){
-								echo '<div class="sub-heading">'.esc_attr($azera_shop_our_services_subtitle).'</div>';
-							} elseif ( isset( $wp_customize ) ) {
-								echo '<div class="sub-heading azera_shop_only_customizer"></div>';
-							}
-						?>
-					</div>
+                                    if ( ! empty( $title ) ) {
+                                        if ( ! empty( $link ) ) { ?>
+                                            <h3 class="colored-text">
+                                                <a href="<?php echo esc_url( $link ); ?>"><?php echo wp_kses_post( $title ); ?></a>
+                                            </h3>
+                                            <?php
+                                        } else { ?>
+                                            <h3 class="colored-text"><?php echo wp_kses_post( $title ); ?></h3>
+                                            <?php
+                                        }
+                                      }
 
-
-					<?php
-						if( !empty($azera_shop_services) ){
-							$azera_shop_services_decoded = json_decode($azera_shop_services);
-							echo '<div id="our_services_wrap" class="services-wrap">';
-								foreach($azera_shop_services_decoded as $azera_shop_service_box){
-									if( (!empty($azera_shop_service_box->icon_value) && $azera_shop_service_box->icon_value!='No Icon' && $azera_shop_service_box->choice == 'azera_shop_icon')  || (!empty($azera_shop_service_box->image_url)  && $azera_shop_service_box->choice == 'azera_shop_image') || !empty($azera_shop_service_box->title) || !empty($azera_shop_service_box->text) ){
-										echo '<div class="service-box"><div class="single-service border-bottom-hover">';
-											if( !empty($azera_shop_service_box->choice) && $azera_shop_service_box->choice !== 'azera_shop_none'  ){
-												if ( $azera_shop_service_box->choice == 'azera_shop_icon' ){
-													if( !empty($azera_shop_service_box->icon_value) ) {
-														if( !empty($azera_shop_service_box->link) ){
-															if (function_exists ( 'icl_t' ) && !empty($azera_shop_service_box->id)){
-																
-																$azera_shop_link_services = icl_t('Featured Area',$azera_shop_service_box->id.'_services_link',$azera_shop_service_box->link);
-																
-																echo '<div class="service-icon colored-text"><a href="'.esc_url($azera_shop_link_services).'"><i class="fa '.esc_attr($azera_shop_service_box->icon_value).'"></i></a></div>';
-															} else {
-															
-																echo '<div class="service-icon colored-text"><a href="'.esc_url($azera_shop_service_box->link).'"><i class="fa '.esc_attr($azera_shop_service_box->icon_value).'"></i></a></div>';
-															}
-														} else {
-															echo '<div class="service-icon colored-text"><i class="fa '.esc_attr($azera_shop_service_box->icon_value).'"></i></div>';
-														}
-													}
-												}
-												if( $azera_shop_service_box->choice == 'azera_shop_image' ){
-													if( !empty($azera_shop_service_box->image_url)){
-														if( !empty($azera_shop_service_box->link) ){
-															if(!empty($azera_shop_service_box->title)){
-																
-																if (function_exists ( 'icl_t' ) && !empty($azera_shop_service_box->id)){
-																
-																	$azera_shop_title_services = icl_t('Featured Area',$azera_shop_service_box->id.'_services_title',$azera_shop_service_box->title);
-																	$azera_shop_link_services = icl_t('Featured Area',$azera_shop_service_box->id.'_services_link',$azera_shop_service_box->link);
-														
-																	echo '<a href="'.esc_url($azera_shop_link_services).'"><img src="'.esc_url($azera_shop_service_box->image_url).'" alt="'.$azera_shop_title_services.'"/></a>';
-																	
-																} else {
-																	
-																	echo '<a href="'.esc_url($azera_shop_service_box->link).'"><img src="'.esc_url($azera_shop_service_box->image_url).'" alt="'.$azera_shop_service_box->title.'"/></a>';
-																}	
-																
-															} else {
-																
-																if (function_exists ( 'icl_t' ) && !empty($azera_shop_service_box->id)){
-																	
-																	$azera_shop_link_services = icl_t('Featured Area',$azera_shop_service_box->id.'_services_link',$azera_shop_service_box->link);
-																	
-																	echo '<a href="'.esc_url($azera_shop_link_services).'"><img src="'.esc_url($azera_shop_service_box->image_url).'" alt="'.esc_html__('Featured Image','azera-shop-companion').'"/></a>';
-																	
-																} else {
-																	
-																	echo '<a href="'.esc_url($azera_shop_service_box->link).'"><img src="'.esc_url($azera_shop_service_box->image_url).'" alt="'.esc_html__('Featured Image','azera-shop-companion').'"/></a>';
-																}	
-																
-															}
-														} else {
-															if(!empty($azera_shop_service_box->title)){
-																echo '<img src="'.esc_url($azera_shop_service_box->image_url).'" alt="'.$azera_shop_service_box->title.'"/>';
-															} else {
-																echo '<img src="'.esc_url($azera_shop_service_box->image_url).'" alt="'.esc_html__('Featured Image','azera-shop-companion').'"/>';
-															}
-														}
-													}
-												}
-											}
-											if(!empty($azera_shop_service_box->title)){
-												if( !empty($azera_shop_service_box->link) ){
-													if (function_exists ( 'icl_t' ) && !empty($azera_shop_service_box->id)){
-														$azera_shop_title_services = icl_t('Featured Area',$azera_shop_service_box->id.'_services_title',$azera_shop_service_box->title);
-														$azera_shop_link_services = icl_t('Featured Area',$azera_shop_service_box->id.'_services_link',$azera_shop_service_box->link);
-														echo '<h3 class="colored-text"><a href="'.esc_url($azera_shop_link_services).'">'.esc_attr($azera_shop_title_services).'</a></h3>';
-													} else {
-														echo '<h3 class="colored-text"><a href="'.esc_url($azera_shop_service_box->link).'">'.esc_attr($azera_shop_service_box->title).'</a></h3>';
-													}
-												} else {
-													if (function_exists ( 'icl_t' ) && !empty($azera_shop_service_box->id)){
-														$azera_shop_title_services = icl_t('Featured Area',$azera_shop_service_box->id.'_services_title',$azera_shop_service_box->title);
-														echo '<h3 class="colored-text">'.esc_attr($azera_shop_title_services).'</h3>';
-													} else {
-														echo '<h3 class="colored-text">'.esc_attr($azera_shop_service_box->title).'</h3>';
-													}
-												}
-											}
-											if(!empty($azera_shop_service_box->text)){
-												if (function_exists ( 'icl_t' ) && !empty($azera_shop_service_box->id)){
-													echo '<p>'.icl_t('Featured Area',$azera_shop_service_box->id.'_services_text',html_entity_decode($azera_shop_service_box->text)).'</p>';
-												} else {
-													echo '<p>'.html_entity_decode($azera_shop_service_box->text).'</p>';
-												}
-											}
-										echo '</div></div>';
-									}
-								}
-							echo '</div>';
-						}
-					?>
-				</div>	
-			</div>
-		</section>
-		<?php
-	}	
-	?>
+                                    if ( ! empty( $text ) ) { ?>
+                                        <p><?php echo wp_kses_post( $text ); ?></p>
+                                        <?php
+                                    } ?>
+                                </div>
+                            </div>
+                            <?php
+                        }
+                    } ?>
+                </div>
+                <?php
+            } ?>
+        </div>
+    </div>
+</section>

@@ -21,6 +21,11 @@ define( 'AZERA_SHOP_COMPANION_VERSION', '1.0.5' );
 define( 'AZERA_SHOP_COMPANION_URL', plugin_dir_url( __FILE__ ) );
 define( 'AZERA_SHOP_COMPANION_PATH', plugin_dir_path( __FILE__ ) );
 
+/**
+ * Require section translations
+ */
+require AZERA_SHOP_COMPANION_PATH . 'inc/translations/general.php';
+
 /* Required helper functions */
 include_once( dirname( __FILE__ ) . '/inc/settings.php' );
 
