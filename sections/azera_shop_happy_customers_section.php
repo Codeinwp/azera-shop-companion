@@ -3,9 +3,9 @@
 ============================== -->
 <?php
 	global $wp_customize;
-	
+
 	$azera_shop_happy_customers_show = get_theme_mod('azera_shop_happy_customers_show');
-	
+
 	$azera_shop_happy_customers_title = get_theme_mod('azera_shop_happy_customers_title',esc_html__('Happy Customers','azera-shop-companion'));
 	$azera_shop_happy_customers_subtitle = get_theme_mod('azera_shop_happy_customers_subtitle',esc_html__('Cloud computing subscription model out of the box proactive solution.','azera-shop-companion'));
 	$azera_shop_testimonials_content = get_theme_mod('azera_shop_testimonials_content',
@@ -17,7 +17,7 @@
 			)
 		)
 	);
-	
+
 	/* If section is not disabled */
 	if( isset($azera_shop_happy_customers_show) && $azera_shop_happy_customers_show != 1 ) {
 
@@ -70,9 +70,9 @@
 															echo '<img src="'.esc_url($azera_shop_testimonial->image_url).'" alt="'.esc_html('Avatar','azera-shop-companion').'">';
 														}
 													} else {
-														$default_image = azera_shop_lite_get_file('/images/clients/client-no-image.jpg');
-														echo '<img src="'.esc_url($default_image).'" alt="'.esc_html('Avatar','azera-shop-companion').'">';	
-													}	
+														$default_image = AZERA_SHOP_COMPANION_URL . '/images/client-no-image.jpg';
+														echo '<img src="'.esc_url($default_image).'" alt="'.esc_html('Avatar','azera-shop-companion').'">';
+													}
 												?>
 											</div>
 										</div>
@@ -98,13 +98,13 @@
 												if(!empty($azera_shop_testimonial->subtitle)){
 											?>
 													<div class="small-text">
-														<?php 
+														<?php
 															if(function_exists('icl_t')){
 																echo icl_t('Testimonials',$azera_shop_testimonial->id.'_testimonials_subtitle',esc_attr($azera_shop_testimonial->subtitle));
 															} else {
 																echo esc_attr($azera_shop_testimonial->subtitle);
 															}
-														?>	
+														?>
 													</div>
 											<?php
 												}
@@ -112,11 +112,11 @@
 												if(!empty($azera_shop_testimonial->text)){
 											?>
 													<p>
-														<?php 
+														<?php
 															if(function_exists('icl_t')){
 																echo icl_t('Testimonials',$azera_shop_testimonial->id.'_testimonials_text',html_entity_decode($azera_shop_testimonial->text));
 															} else {
-																echo html_entity_decode($azera_shop_testimonial->text); 
+																echo html_entity_decode($azera_shop_testimonial->text);
 															}
 														?>
 													</p>
@@ -140,7 +140,7 @@
 		</section><!-- customers -->
 	<?php
 		}
-	/* If section is disabled, but we are in Customize, display section with class azera_shop_only_customizer */	
+	/* If section is disabled, but we are in Customize, display section with class azera_shop_only_customizer */
 	} elseif( isset( $wp_customize ) ) {
 	?>
 		<section class="testimonials azera_shop_only_customizer" id="customers" role="region" aria-label="<?php esc_html_e('Testimonials','azera-shop-companion') ?>">
@@ -190,9 +190,9 @@
 															echo '<img src="'.esc_url($azera_shop_testimonial->image_url).'" alt="'.esc_html('Avatar','azera-shop-companion').'">';
 														}
 													} else {
-														$default_image = azera_shop_lite_get_file('/images/clients/client-no-image.jpg');
-														echo '<img src="'.esc_url($default_image).'" alt="'.esc_html('Avatar','azera-shop-companion').'">';	
-													}	
+														$default_image = AZERA_SHOP_COMPANION_URL . '/images/client-no-image.jpg';
+														echo '<img src="'.esc_url($default_image).'" alt="'.esc_html('Avatar','azera-shop-companion').'">';
+													}
 												?>
 											</div>
 										</div>
@@ -218,13 +218,13 @@
 												if(!empty($azera_shop_testimonial->subtitle)){
 											?>
 													<div class="small-text">
-														<?php 
+														<?php
 															if(function_exists('icl_t')){
 																echo icl_t('Testimonials',$azera_shop_testimonial->id.'_testimonials_subtitle',esc_attr($azera_shop_testimonial->subtitle));
 															} else {
 																echo esc_attr($azera_shop_testimonial->subtitle);
 															}
-														?>	
+														?>
 													</div>
 											<?php
 												}
@@ -232,11 +232,11 @@
 												if(!empty($azera_shop_testimonial->text)){
 											?>
 													<p>
-														<?php 
+														<?php
 															if(function_exists('icl_t')){
 																echo icl_t('Testimonials',$azera_shop_testimonial->id.'_testimonials_text',html_entity_decode($azera_shop_testimonial->text));
 															} else {
-																echo html_entity_decode($azera_shop_testimonial->text); 
+																echo html_entity_decode($azera_shop_testimonial->text);
 															}
 														?>
 													</p>
