@@ -70,7 +70,7 @@
 															echo '<img src="'.esc_url($azera_shop_testimonial->image_url).'" alt="'.esc_html('Avatar','azera-shop-companion').'">';
 														}
 													} else {
-														$default_image = azera_shop_get_file('/images/clients/client-no-image.jpg');
+														$default_image = AZERA_SHOP_COMPANION_URL . '/images/client-no-image.jpg';
 														echo '<img src="'.esc_url($default_image).'" alt="'.esc_html('Avatar','azera-shop-companion').'">';
 													}
 												?>
@@ -190,7 +190,7 @@
 															echo '<img src="'.esc_url($azera_shop_testimonial->image_url).'" alt="'.esc_html('Avatar','azera-shop-companion').'">';
 														}
 													} else {
-														$default_image = azera_shop_lite_get_file('/images/clients/client-no-image.jpg');
+														$default_image = AZERA_SHOP_COMPANION_URL . '/images/client-no-image.jpg';
 														echo '<img src="'.esc_url($default_image).'" alt="'.esc_html('Avatar','azera-shop-companion').'">';
 													}
 												?>
