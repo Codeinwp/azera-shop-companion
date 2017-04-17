@@ -11,7 +11,7 @@ $azera_shop_team_content        = get_theme_mod( 'azera_shop_team_content', $def
 if ( function_exists( 'azera_shop_general_repeater_is_empty' ) ){
     $content_is_empty = azera_shop_general_repeater_is_empty( $azera_shop_team_content );
 } else {
-    $content_is_empty = !empty( $azera_shop_team_content );
+    $content_is_empty = empty( $azera_shop_team_content );
 }
 $section_is_empty               = ! isset( $azera_shop_our_team_show ) || $azera_shop_our_team_show == 1 || ( empty( $azera_shop_our_team_title ) && empty( $azera_shop_our_team_subtitle ) && $content_is_empty );
 if( !$section_is_empty){ ?>

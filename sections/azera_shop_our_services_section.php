@@ -7,7 +7,7 @@ $azera_shop_services              = get_theme_mod( 'azera_shop_services_content'
 if ( function_exists( 'azera_shop_general_repeater_is_empty' ) ){
     $content_is_empty = azera_shop_general_repeater_is_empty( $azera_shop_services );
 } else {
-    $content_is_empty = !empty( $azera_shop_services );
+    $content_is_empty = empty( $azera_shop_services );
 }
 $section_is_empty = ! isset( $azera_shop_our_services_show ) || $azera_shop_our_services_show == 1 || ( empty( $azera_shop_our_services_title ) && empty( $azera_shop_our_services_subtitle ) && $content_is_empty );
 if( !$section_is_empty ){ ?>
