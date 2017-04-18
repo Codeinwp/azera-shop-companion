@@ -19,7 +19,6 @@ function azera_shop_companion_customize_register( $wp_customize ) {
 		/* Services show/hide */
 		$wp_customize->add_setting( 'azera_shop_our_services_show', array(
 			'sanitize_callback' => 'azera_shop_sanitize_text',
-			'transport' => 'postMessage'
 		));
 		
 		$wp_customize->add_control( 'azera_shop_our_services_show', array(
@@ -33,7 +32,6 @@ function azera_shop_companion_customize_register( $wp_customize ) {
 		$wp_customize->add_setting( 'azera_shop_our_services_title', array(
 			'default' => esc_html__('Our Services','azera-shop-companion'),
 			'sanitize_callback' => 'azera_shop_sanitize_text',
-			'transport' => 'postMessage'
 		));
 		$wp_customize->add_control( 'azera_shop_our_services_title', array(
 			'label'    => esc_html__( 'Main title', 'azera-shop-companion' ),
@@ -45,7 +43,6 @@ function azera_shop_companion_customize_register( $wp_customize ) {
 		$wp_customize->add_setting( 'azera_shop_our_services_subtitle', array(
 			'default' => esc_html__('Lorem ipsum dolor sit amet, consectetur adipiscing elit.','azera-shop-companion'),
 			'sanitize_callback' => 'azera_shop_sanitize_text',
-			'transport' => 'postMessage'
 		));
 		$wp_customize->add_control( 'azera_shop_our_services_subtitle', array(
 			'label'    => esc_html__( 'Subtitle', 'azera-shop-companion' ),
@@ -85,7 +82,6 @@ function azera_shop_companion_customize_register( $wp_customize ) {
 		/* Team show/hide */
 		$wp_customize->add_setting( 'azera_shop_our_team_show', array(
 			'sanitize_callback' => 'azera_shop_sanitize_text',
-			'transport' => 'postMessage'
 		));
 		
 		$wp_customize->add_control( 'azera_shop_our_team_show', array(
@@ -99,7 +95,6 @@ function azera_shop_companion_customize_register( $wp_customize ) {
 		$wp_customize->add_setting( 'azera_shop_our_team_title', array(
 			'default' => esc_html__('Our Team','azera-shop-companion'),
 			'sanitize_callback' => 'azera_shop_sanitize_text',
-			'transport' => 'postMessage'
 		));
 		$wp_customize->add_control( 'azera_shop_our_team_title', array(
 			'label'    => esc_html__( 'Main title', 'azera-shop-companion' ),
@@ -111,7 +106,6 @@ function azera_shop_companion_customize_register( $wp_customize ) {
 		$wp_customize->add_setting( 'azera_shop_our_team_subtitle', array(
 			'default' => esc_html__('Lorem ipsum dolor sit amet, consectetur adipiscing elit.','azera-shop-companion'),
 			'sanitize_callback' => 'azera_shop_sanitize_text',
-			'transport' => 'postMessage'
 		));
 		$wp_customize->add_control( 'azera_shop_our_team_subtitle', array(
 			'label'    => esc_html__( 'Subtitle', 'azera-shop-companion' ),
@@ -159,7 +153,6 @@ function azera_shop_companion_customize_register( $wp_customize ) {
 		/* Testimonials show/hide */
 		$wp_customize->add_setting( 'azera_shop_happy_customers_show', array(
 			'sanitize_callback' => 'azera_shop_sanitize_text',
-			'transport' => 'postMessage'
 		));
 		
 		$wp_customize->add_control( 'azera_shop_happy_customers_show', array(
@@ -173,7 +166,6 @@ function azera_shop_companion_customize_register( $wp_customize ) {
 		$wp_customize->add_setting( 'azera_shop_happy_customers_title', array(
 			'default' => esc_html__('Happy Customers','azera-shop-companion'),
 			'sanitize_callback' => 'azera_shop_sanitize_text',
-			'transport' => 'postMessage'
 		));
 		$wp_customize->add_control( 'azera_shop_happy_customers_title', array(
 			'label'    => esc_html__( 'Main title', 'azera-shop-companion' ),
@@ -185,7 +177,6 @@ function azera_shop_companion_customize_register( $wp_customize ) {
 		$wp_customize->add_setting( 'azera_shop_happy_customers_subtitle', array(
 			'default' => esc_html__('Cloud computing subscription model out of the box proactive solution.','azera-shop-companion'),
 			'sanitize_callback' => 'azera_shop_sanitize_text',
-			'transport' => 'postMessage'
 		));
 		$wp_customize->add_control( 'azera_shop_happy_customers_subtitle', array(
 			'label'    => esc_html__( 'Subtitle', 'azera-shop-companion' ),
@@ -213,13 +204,4 @@ function azera_shop_companion_customize_register( $wp_customize ) {
 	}
 }
 add_action( 'customize_register', 'azera_shop_companion_customize_register', 999 );
-
-/**
- * Binds JS handlers to make Theme Customizer preview reload changes asynchronously.
- */
-function azera_shop_companion_customize_preview_js() {
-	wp_enqueue_script( 'azera_shop_companion_customizer', AZERA_SHOP_COMPANION_URL . '/js/azera-shop-companion-customizer.js', array( 'customize-preview' ), '1.0.2', true );
-}
-add_action( 'customize_preview_init', 'azera_shop_companion_customize_preview_js', 10);
-
 ?>
