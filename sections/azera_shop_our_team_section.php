@@ -6,7 +6,10 @@ $azera_shop_our_team_show       = get_theme_mod( 'azera_shop_our_team_show' );
 $azera_shop_our_team_title      = get_theme_mod( 'azera_shop_our_team_title', esc_html__( 'Our Team', 'azera-shop-companion' ) );
 $azera_shop_our_team_background = get_theme_mod( 'azera_shop_our_team_background', azera_shop_get_file( '/images/background-images/parallax-img/team-img.jpg' ) );
 $azera_shop_our_team_subtitle   = get_theme_mod( 'azera_shop_our_team_subtitle', esc_html__( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', 'azera-shop-companion' ) );
-$default                        = azera_shop_companion_team_get_default_content();
+$default = '';
+if( function_exists('azera_shop_companion_team_get_default_content') ){
+    $default = azera_shop_companion_team_get_default_content();
+}
 $azera_shop_team_content        = get_theme_mod( 'azera_shop_team_content', $default );
 if ( function_exists( 'azera_shop_general_repeater_is_empty' ) ){
     $content_is_empty = azera_shop_general_repeater_is_empty( $azera_shop_team_content );
