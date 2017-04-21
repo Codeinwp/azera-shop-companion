@@ -5,7 +5,10 @@
 $azera_shop_happy_customers_show = get_theme_mod( 'azera_shop_happy_customers_show' );
 $azera_shop_happy_customers_title    = get_theme_mod( 'azera_shop_happy_customers_title', esc_html__( 'Happy Customers', 'azera-shop-companion' ) );
 $azera_shop_happy_customers_subtitle = get_theme_mod( 'azera_shop_happy_customers_subtitle', esc_html__( 'Cloud computing subscription model out of the box proactive solution.', 'azera-shop-companion' ) );
-$default                             = azera_shop_companion_testimonials_get_default_content();
+$default = '';
+if( function_exists('azera_shop_companion_testimonials_get_default_content')){
+    $default = azera_shop_companion_testimonials_get_default_content();
+}
 $azera_shop_testimonials_content     = get_theme_mod( 'azera_shop_testimonials_content', $default );
 if ( function_exists( 'azera_shop_general_repeater_is_empty' ) ){
     $content_is_empty = azera_shop_general_repeater_is_empty( $azera_shop_testimonials_content );
